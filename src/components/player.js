@@ -4,32 +4,36 @@ export default function Player(props) {
   const [isEditing, setIsEditing] = useState(false);
 
   function handleEdit() {
-    setIsEditing(!isEditing);
+    setIsEditing((editing) => !editing);
   }
 
   function handleSave() {
-    setIsEditing(!isEditing);
+    setIsEditing((editing) => !editing);
+  }
+
+  var playerName = <span className="player-name">{props.name}</span>;
+  var buttonIcon = (
+    <button id="editbtn" onClick={handleEdit}>
+      <img src="edit.png" alt="edit" />
+    </button>
+  );
+
+  if (isEditing) {
+    playerName = <input type="text" required value={props.name} />;
+    buttonIcon = (
+      <button id="savebtn" onClick={handleSave}>
+        <img src="save.png" alt="save" />
+      </button>
+    );
   }
 
   return (
     <li>
       <span className="player">
-        {!isEditing ? (
-          <span className="player-name">{props.name}</span>
-        ) : (
-          <input />
-        )}
+        {playerName}
         <span className="player-symbol">{props.symbol}</span>
       </span>
-      {!isEditing ? (
-        <button id="editbtn" onClick={handleEdit}>
-          <img src="edit.png" alt="edit" />
-        </button>
-      ) : (
-        <button id="savebtn" onClick={handleSave}>
-          <img src="save.png" alt="save" />
-        </button>
-      )}
+      {buttonIcon}
     </li>
   );
 }
