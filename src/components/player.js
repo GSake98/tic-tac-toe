@@ -22,11 +22,11 @@ export default function Player(props) {
         <span className="player-symbol">{props.symbol}</span>
       </span>
       {!isEditing ? (
-        <button id="editbtn" onClick={() => handleEdit(isEditing)}>
+        <button id="editbtn" onClick={handleEdit}>
           <img src="edit.png" alt="edit" />
         </button>
       ) : (
-        <button id="savebtn" onClick={() => handleSave(isEditing)}>
+        <button id="savebtn" onClick={handleSave}>
           <img src="save.png" alt="save" />
         </button>
       )}
