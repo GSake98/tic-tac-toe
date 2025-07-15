@@ -107,6 +107,13 @@ h1 {
   background-color: #eea942;
 }
 
+#savebtn img {
+  width: 20px;
+  height: 20px;
+  margin-left: 2rem;
+  background-color: #eea942;
+}
+
 .player {
   border: 2px solid transparent;
   padding: 0.5rem;

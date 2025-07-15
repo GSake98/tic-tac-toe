@@ -1,13 +1,35 @@
+import { useState } from "react";
+
 export default function Player(props) {
+  const [isEditing, setIsEditing] = useState(false);
+
+  function handleEdit() {
+    setIsEditing(!isEditing);
+  }
+
+  function handleSave() {
+    setIsEditing(!isEditing);
+  }
+
   return (
     <li>
       <span className="player">
-        <span className="player-name">{props.name}</span>
+        {!isEditing ? (
+          <span className="player-name">{props.name}</span>
+        ) : (
+          <input />
+        )}
         <span className="player-symbol">{props.symbol}</span>
       </span>
-      <button id="editbtn">
-        <img src="edit.png" alt="edit" />
-      </button>
+      {!isEditing ? (
+        <button id="editbtn" onClick={() => handleEdit(isEditing)}>
+          <img src="edit.png" alt="edit" />
+        </button>
+      ) : (
+        <button id="savebtn" onClick={() => handleSave(isEditing)}>
+          <img src="save.png" alt="save" />
+        </button>
+      )}
     </li>
   );
 }
