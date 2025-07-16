@@ -1,17 +1,18 @@
 import { useState } from "react";
 
-export default function Player(props) {
+export default function Player({ name, symbol }) {
+  const [playerName, setPlayerName] = useState(name);
   const [isEditing, setIsEditing] = useState(false);
 
   function handleEdit() {
     setIsEditing((editing) => !editing);
   }
 
-  function handleSave() {
-    setIsEditing((editing) => !editing);
+  function handleChange(event) {
+    setPlayerName(event.target.value);
   }
 
-  var playerName = <span className="player-name">{props.name}</span>;
+  var editablePlayerName = <span className="player-name">{playerName}</span>;
   var buttonIcon = (
     <button id="editbtn" onClick={handleEdit}>
       <img src="edit.png" alt="edit" />
@@ -19,9 +20,11 @@ export default function Player(props) {
   );
 
   if (isEditing) {
-    playerName = <input type="text" required value={props.name} />;
+    editablePlayerName = (
+      <input type="text" required value={playerName} onChange={handleChange} />
+    );
     buttonIcon = (
-      <button id="savebtn" onClick={handleSave}>
+      <button id="savebtn" onClick={handleEdit}>
         <img src="save.png" alt="save" />
       </button>
     );
@@ -30,8 +33,8 @@ export default function Player(props) {
   return (
     <li>
       <span className="player">
-        {playerName}
-        <span className="player-symbol">{props.symbol}</span>
+        {editablePlayerName}
+        <span className="player-symbol">{symbol}</span>
       </span>
       {buttonIcon}
     </li>
