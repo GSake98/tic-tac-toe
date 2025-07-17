@@ -31,7 +31,6 @@ function App() {
         </ol>
         <GameBoard onSelection={handleSelection} turns={gameTurns} />
       </div>
-      LOG
       <Log turns={gameTurns} />
     </main>
   );
